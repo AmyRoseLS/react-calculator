@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.screen {
+    background-color: salmon;
+    width: 400px;
+    height: 100px;
+    display: grid;
+    align-items: center;
+    justify-content: end;
+}
+
+.screen__numbers {
+    font-size: 4rem;
+}
+
+.button-box {
+    width: 400px;
+    height: 400px;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.button {
+    background-color: bisque;
+    width: 75px;
+    height: 75px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
