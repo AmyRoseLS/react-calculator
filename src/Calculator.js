@@ -5,11 +5,36 @@ import { useState } from 'react';
 
 export default function Calculator() {
 
-  const [screenHistory, setScreenHistory] = useState([""]);
+  const [screenHistory, setScreenHistory] = useState("");
 
-  function handleClick(label) {
-    const newScreenHistory = [...screenHistory,label]//have no idea whether this needs a const or a let at the beginning
-    setScreenHistory(newScreenHistory);
+  function doMath (screenHistory,label) {
+    console.log(`doMath got called, the preceding number was ${screenHistory} and the operator was ${label}`);
+    return;
+  }
+
+  function handleClick(label,func) {
+
+    let newScreenHistory = ""; //check with someone about how you're declaring and changing this variable
+
+     switch (func) {
+      case 'clear':
+        newScreenHistory = screenHistory.substring(0,screenHistory.length-1);
+        setScreenHistory(newScreenHistory);
+        break;
+
+      case 'input':
+        newScreenHistory = screenHistory+label;
+        setScreenHistory(newScreenHistory);
+        break;
+
+      case 'math':
+        //DRY it out bitch
+        newScreenHistory = screenHistory+label;
+        doMath(screenHistory,label);
+        setScreenHistory(newScreenHistory);
+        break;
+    }
+  
   }
 
 
