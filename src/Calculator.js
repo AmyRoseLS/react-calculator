@@ -5,54 +5,62 @@ import { useState } from 'react';
 
 export default function Calculator() {
 
-  const [screenHistory, setScreenHistory] = useState("");
+  const [screen, setScreen] = useState("");
 
-  let newScreenHistory = ""; //check with someone about how you're declaring and changing this variable
-  let nums = [];
-  let ops = [];
-  let have = "";
+  let newScreen = ""; //check with someone about how you're declaring and changing this variable
+  let calc; //eeeee check with someone about how you're declaring this! It will be a match object later.
 
-  function updateScreen(label){
-    newScreenHistory=screenHistory+label;
-    setScreenHistory(newScreenHistory);
-    return;
-  }
 
-  function doMath (screenHistory,label) {
-    if(label=="=") {
-      console.log(`yup, you hit the equals sign`)
-      return;
-    } else {
-      // nextNumber = //compare screen history with nums+operator. store the bit of screen history that isn't already held in nums+operator
-      nums.push(screenHistory); //.push screenHistory MINUS the bits that we already have - ie any previous numbers entered or operators clicked
-      ops.push(label);
-      console.log(`doMath got called, you now have nums ${nums} and ops ${ops}`);
-    }
-    return;
+  function doMath (screen,label) {
+    console.log(`doMath got called`);
+
+    // tokenise & label screen string 
+    // that means: break string into an array that looks like [ {number:12}, {operator:+}, {number:34} ]
+    calc=screen.match(/\d+|[+\-*/]/g).map(token => {
+      if(/^\d+$/.test(token)){
+        return {num:Number(token)};
+      } else {
+        // storing the operator as their place in the precedence order BIDMAS
+        switch(token) {
+          case "/":
+            return {op:1};
+          case "x":
+            return {op:2};
+          case "+":
+            return {op:3};
+          case "-":
+            return {op:4};
+        }
+      };
+    })
+    console.log(`calc looks like`);
+    console.log(calc);
+
+    return "uwu";
   }
 
   function handleClick(label,func) {
      switch (func) {
       case 'back':
-        newScreenHistory = screenHistory.substring(0,screenHistory.length-1);
-        setScreenHistory(newScreenHistory);
+        newScreen = screen.substring(0,screen.length-1);
+        setScreen(newScreen);
         break;
       case 'clear':
-        setScreenHistory("");
+        setScreen("");
         break;
       case 'input':
-        updateScreen(label);
+        newScreen=screen+label;
+        setScreen(newScreen);
         break;
-      case 'math':
-        //DRY it out bitch
-        doMath(screenHistory,label);
-        updateScreen(label);
+      case 'equals':
+        let answer = doMath(screen,label);
+        setScreen(answer);
         break;
     }
   }
   return (
     <div>
-      <Screen screenHistory={screenHistory}/>
+      <Screen screen={screen}/>
       <ButtonBox handleClick={handleClick}/>
     </div>
   );

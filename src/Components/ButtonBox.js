@@ -8,12 +8,12 @@ export default function ButtonBox( {handleClick} ) {
     const buttonLabels = [
         {label:'AC', does:'clear'},
         {label:'back', does:'back'},
-        {label:'%', does:'math'},
-        {label: '/', does: 'math'},
-        {label: 'x', does: 'math'},
-        {label: '-', does: 'math'},
-        {label: '+', does: 'math'},
-        {label: '=', does: 'math'},
+        {label:'%', does:'input'},
+        {label: '/', does: 'input'},
+        {label: '*', does: 'input'},
+        {label: '-', does: 'input'},
+        {label: '+', does: 'input'},
+        {label: '=', does: 'equals'},
         {label: '.', does: 'input'},
         ...Array.from({length:10},(_,i)=> (
             {label:i, does: 'input'}

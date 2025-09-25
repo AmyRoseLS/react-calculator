@@ -1,9 +1,9 @@
 import '../globals.css';
 
-export default function Screen( {screenHistory} ) {
+export default function Screen( {screen} ) {
     return(
         <div className="screen">
-            <p className="screen__numbers"> {screenHistory} </p>
+            <p className="screen__numbers"> {screen} </p>
         </div>
     )
 }
