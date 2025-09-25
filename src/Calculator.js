@@ -7,37 +7,49 @@ export default function Calculator() {
 
   const [screenHistory, setScreenHistory] = useState("");
 
+  let newScreenHistory = ""; //check with someone about how you're declaring and changing this variable
+  let nums = [];
+  let ops = [];
+  let have = "";
+
+  function updateScreen(label){
+    newScreenHistory=screenHistory+label;
+    setScreenHistory(newScreenHistory);
+    return;
+  }
+
   function doMath (screenHistory,label) {
-    console.log(`doMath got called, the preceding number was ${screenHistory} and the operator was ${label}`);
+    if(label=="=") {
+      console.log(`yup, you hit the equals sign`)
+      return;
+    } else {
+      // nextNumber = //compare screen history with nums+operator. store the bit of screen history that isn't already held in nums+operator
+      nums.push(screenHistory); //.push screenHistory MINUS the bits that we already have - ie any previous numbers entered or operators clicked
+      ops.push(label);
+      console.log(`doMath got called, you now have nums ${nums} and ops ${ops}`);
+    }
     return;
   }
 
   function handleClick(label,func) {
-
-    let newScreenHistory = ""; //check with someone about how you're declaring and changing this variable
-
      switch (func) {
-      case 'clear':
+      case 'back':
         newScreenHistory = screenHistory.substring(0,screenHistory.length-1);
         setScreenHistory(newScreenHistory);
         break;
-
-      case 'input':
-        newScreenHistory = screenHistory+label;
-        setScreenHistory(newScreenHistory);
+      case 'clear':
+        setScreenHistory("");
         break;
-
+      case 'input':
+        updateScreen(label);
+        break;
       case 'math':
         //DRY it out bitch
-        newScreenHistory = screenHistory+label;
         doMath(screenHistory,label);
-        setScreenHistory(newScreenHistory);
+        updateScreen(label);
         break;
     }
-  
   }
-
-
   return (
     <div>
       <Screen screenHistory={screenHistory}/>
