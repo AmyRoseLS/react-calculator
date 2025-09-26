@@ -22,7 +22,7 @@ export default function Calculator() {
         switch(token) {
           case "/":
             return {op:1};
-          case "x":
+          case "*":
             return {op:2};
           case "+":
             return {op:3};
