@@ -72,12 +72,12 @@ export default function Calculator() {
       precedence += 1;
       }  
     }
-    return calc[0].toString();
+    return calc[0].toFixed(3);
   }
 
   
-  function handleClick(label,func) {
-     switch (func) {
+  function handleClick(label,buttonDoes) {
+     switch (buttonDoes) {
       case 'back':
         newScreen = screen.substring(0,screen.length-1);
         setScreen(newScreen);

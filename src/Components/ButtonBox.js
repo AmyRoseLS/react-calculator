@@ -23,7 +23,7 @@ export default function ButtonBox( {handleClick} ) {
         <div className="button-box">
 
             {buttonLabels.map( button =>
-            <Button key={button.label} label={button.label} func={button.does} handleClick={handleClick} />
+            <Button key={button.label} label={button.label} buttonDoes={button.does} handleClick={handleClick} />
             )}
 
         </div>
