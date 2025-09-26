@@ -7,10 +7,9 @@ export default function ButtonBox( {handleClick} ) {
 
     const buttonLabels = [
         {label:'AC', does:'clear'},
-        {label:'back', does:'back'},
-        {label:'%', does:'input'},
-        {label: '/', does: 'input'},
-        {label: '*', does: 'input'},
+        {label:'DEL', does:'back'},
+        {label: '÷', does: 'input'},
+        {label: 'x', does: 'input'},
         {label: '-', does: 'input'},
         {label: '+', does: 'input'},
         {label: '=', does: 'equals'},
@@ -23,12 +22,8 @@ export default function ButtonBox( {handleClick} ) {
     return(
         <div className="button-box">
 
-            {/* {buttonLabels.map( label =>
-            <Button label={label} handleClick={handleClick}/>
-            )} */}
-
             {buttonLabels.map( button =>
-            <Button label={button.label} func={button.does} handleClick={handleClick} />
+            <Button key={button.label} label={button.label} func={button.does} handleClick={handleClick} />
             )}
 
         </div>

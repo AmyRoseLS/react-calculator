@@ -20,9 +20,9 @@ export default function Calculator() {
       } else {
         // storing the operator as its place in the precedence order BIDMAS
         switch(token) {
-          case "/":
+          case "÷":
             return {op:1};
-          case "*":
+          case "x":
             return {op:2};
           case "+":
             return {op:3};
