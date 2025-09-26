@@ -11,10 +11,10 @@ export default function Calculator() {
   let calc; //eeeee check with someone about how you're declaring this! It will be a match object later.
 
 
-  function doMath (screen) {
+ function doMath(screen) {
     // tokenise & label screen string 
     // that means: break string into an array that looks like, e.g. [ 12, {operator:1}, 34 ]
-    calc=screen.match(/\d+|[+\-*/]/g).map(token => {
+    calc=screen.match(/\d+|[+\-÷x]/g).map(token => {
       if(/^\d+$/.test(token)){
         return Number(token);
       } else {
@@ -103,3 +103,4 @@ export default function Calculator() {
   );
 }
 
+export { doMath };
