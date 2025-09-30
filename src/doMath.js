@@ -1,11 +1,11 @@
 function doMath(screen) {
 
-    let calc; //eeeee check with someone about how you're declaring this! It will be a match object later.
+    let calc; //eeeee check with someone about how you're declaring this! It will be a match object in a few lines time.
 
     // tokenise & label screen string 
     // that means: break string into an array that looks like, e.g. [ 12, {operator:1}, 34 ]
-    calc=screen.match(/\d+|[+\-÷x]/g).map(token => {
-      if(/^\d+$/.test(token)){
+    calc=screen.match(/\d+.\d+|\d+|[+\-÷x]/g).map(token => {
+      if(/\d+.\d+|\d+/.test(token)){
         return Number(token);
       } else {
         // storing the operator as its place in the precedence order BIDMAS
@@ -39,12 +39,12 @@ function doMath(screen) {
     let result;
 
     // loop through the calc array doing the math in precedence order
-    while (calc.length>1) {
+    while (calc.length>1) { //first while
       console.log('in first while loop');
-      while (precedence <= numOfBasicOps){ //change 4 to basicOps.length
+      while (precedence <= numOfBasicOps){ //second while
         console.log('in second while loop');
         index = calc.findIndex( i=> i.op == precedence)
-        while (index>-1) {
+        while (index>-1) { //third while
           console.log('in third while loop');
           result = basicOps[precedence.toString()](calc[index-1], calc[index+1])
           
@@ -58,10 +58,10 @@ function doMath(screen) {
           index = calc.findIndex( i => i.op == precedence)
 
           console.log(calc);
-        }
+        } //end third while
       precedence += 1;
-      }  
-    }
+      }  //end second while
+    } //end first while
 
     result = calc[0].toString();
 
