@@ -63,7 +63,7 @@ function doMath(screen) {
       }  
     }
 
-    result = calc[0];
+    result = calc[0].toString();
 
     return result;
 }
